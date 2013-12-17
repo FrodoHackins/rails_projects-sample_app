@@ -111,6 +111,16 @@ describe User do
       it { should_not == user_for_invalid_pwd}
       specify{user_for_invalid_pwd.should be_false}
     end
+  end 
+
+  describe "mixed-case email" do
+    let(:mixed_case_email) { "foo@BAR.cOm" }
+
+    it "should" do
+      @user.email = mixed_case_email
+      @user.save
+      @user.reload.email.should == mixed_case_email.downcase
+    end
   end
 
 end
