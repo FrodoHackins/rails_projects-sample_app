@@ -1,0 +1,9 @@
+<li>
+  <span class="content"><%= micropost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+  </span>
+  <% if current_user?(micropost.user) || current_user.admin? %>
+  	<%= render 'shared/delete_micropost', mpost: micropost %>
+  <% end unless current_user.nil? %>
+</li>
